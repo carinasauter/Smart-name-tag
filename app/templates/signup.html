@@ -1,0 +1,64 @@
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Smart Nametag</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <link rel="icon" href="{{ url_for('static', filename='img/icons/favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  </head>
+  <body>
+    <div class = "container">
+        <div id="form_shape">
+            <form action="" method="POST">
+            {{ form.hidden_tag() }}
+                <div class="row">
+                    <div class="col l6 offset-l3">
+                        <div class="input-field">
+                            <i class="material-icons prefix">account_circle</i>
+                            {{ form.username(placeholder = "Username", class ="materialize-textarea icon_prefix2") }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col l6 offset-l3">
+                        <div class="input-field">
+                            <i class="material-icons prefix">email</i>
+                                {{ form.email(placeholder = "Email", class ="materialize-textarea icon_prefix2") }}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class = "col l6 offset-l3">
+                        <div class="input-field">
+                            <i class="material-icons prefix">lock</i>
+                                {{ form.password(placeholder = "Password", class ="materialize-textarea icon_prefix2") }}
+                        </div>
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class = "center-align">
+                        <button class="btn waves-effect waves-light" type="submit">Signup
+                            <i class="material-icons right">send</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class = "row">
+                <div class = "center-align">
+                     <p>Already have an account? <a href="{{ url_for('login') }}" title="">Login</a>  instead. </p>
+                </div>
+            </div>
+        </div>
+    </div>
+  </body>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+

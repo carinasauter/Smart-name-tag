@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div>
+        {% for contact in contacts %}
+        <div class="card horizontal">
+            <div class="card-image">
+                <img class="profile_pic_thumbnail" src="">
+            </div>
+            <div class="card-stacked">
+                <div class="card-content">
+                    <h6><b>Name</b></h6>
+                    <p><i>Role</i></p>
+                </div>
+            </div>
+            <div class="card-action">
+                <button class = "btn bookdetails" data-bookid="">Details</button>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

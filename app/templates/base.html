@@ -1,0 +1,69 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>Smart Nametag</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/materialize.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+    <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    <link rel="icon" href="{{ url_for('static', filename='img/icons/favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons|Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+  </head>
+  <body>
+    <header>
+      <nav class = "top-nav">
+        <div class = "container">
+          <div class="nav-wrapper">
+            <div class = "row">
+              <div class="col s12 m10 offset-m1 l8 offset-l2">
+                <h3 class="header">Smart Name Tag Manager</h3>
+              </div>
+              <div class = "col s2 m2 l2 right-align" id = "logoutbutton">
+                <a href="{{ url_for('logout')}}"><button class = "btn">LOGOUT</button></a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class = "container">
+        <ul id = "slide-out" class = "sidenav sidenav-fixed" style = "transform: translateX(-105%);">
+          <li class = "blue-grey darken-4">
+            <div class = "spacer blue-grey-text darken-4 valign-wrapper">
+              <img id ="profilepic" class="circle" src="{{ url_for('static', filename='img/carina.bmp') }}">
+              <span class = "grey-text lighten-1">carina.sauter@berkeley.edu</span>
+            </div>
+          </li>
+          <li class = "blue-grey darken-3">
+            <li class="bold">
+              <a href="{{ url_for('profile') }}" class = "waves-effect waves-teal grey-text lighten-1"><i class="material-icons blue-grey-text darken-2" role="presentation">email</i>My Interests</a>
+            </li>  
+            <li class="bold">
+              <a href="{{ url_for('contacts') }}" class="waves-effect waves-teal grey-text lighten-1"><i class="material-icons blue-grey-text darken-2">email</i>My contacts</a>
+            </li>
+          </li>
+        </ul>
+      </div>
+    </header>
+    <main>
+      <div id="content" class = "container">
+        <div class = "row">
+          <div class = "col s12 m8 l7 offset-m1 offset-l3">
+            <div>
+              {% block content %}{% endblock %}
+            </div>
+          </div>
+        </div>
+        
+      </div>
+
+    
+  </body>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/main.js') }}"></script>
+  <script type="text/javascript" src="{{ url_for('static', filename='js/materialize.js') }}"></script>
+
+  {% block additionallibraries %} {% endblock %}
+  {% block variables %}{% endblock %}
+
+
+

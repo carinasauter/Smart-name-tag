@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h3">Please select your interests</h3>
+<div class="row">
+    <div class="col l4">
+        <img class="interest materialboxed" interest = "drinking" src="{{ url_for('static', filename='img/alcohol.bmp') }}">
+    </div>
+    <div class="col l4">
+        <img class="interest materialboxed" interest = "bball" src="{{ url_for('static', filename='img/bball.bmp') }}">
+    </div>
+    <div class="col l4">
+        <img class=" interest materialboxed" interest = "photography" src="{{ url_for('static', filename='img/Camera.bmp') }}">
+    </div>
+    <div class="col l4">
+        <img class=" interest materialboxed" interest = "travel" src="{{ url_for('static', filename='img/travel.bmp') }}">
+    </div>
+    <div class="col l4">
+        <img class=" interest materialboxed" interest = "dog" src="{{ url_for('static', filename='img/dog.bmp') }}">
+    </div>
+    <div class="col l4">
+        <img class="interest materialboxed" interest = "cat" src="{{ url_for('static', filename='img/cat.bmp') }}">
+    </div>
+    <div class="col l4">
+        <img class=" interest materialboxed" interest = "lala" src="{{ url_for('static', filename='img/lala.bmp') }}">
+    </div>
+    <div class="col l4">
+        <img class="interest materialboxed" interest = "warriors" src="{{ url_for('static', filename='img/warriors.bmp') }}">
+    </div>
+    <div class="col l4">
+        <img class="interest materialboxed" interest = "marvel" src="{{ url_for('static', filename='img/marvel.bmp') }}">
+    </div>
+</div>
+
+{% endblock %}
