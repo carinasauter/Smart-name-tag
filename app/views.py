@@ -95,6 +95,10 @@ def profile():
     company = current_user.company
     linkedin = current_user.linkedin
     interests = current_user.getInterests()
+    interests = json.loads(interests)
+    my_interests = []
+    for entry in interests:
+        my_interests.append(int(entry))
     if form.validate_on_submit():
         new_fullname = form.fullname.data
         new_title = form.title.data
@@ -113,10 +117,10 @@ def profile():
             current_user.updateInfolinkedin(new_linkedin)
             linkedin = new_linkedin
         return render_template('dashboard.html', form = form, fullname = fullname, title = title, \
-            company = company, linkedin = linkedin, interests = json.loads(interests))
+            company = company, linkedin = linkedin, interests = my_interests)
     mqtt.subscribe("caycay/feeds/meetuser")
     return render_template('dashboard.html', form = form, fullname = fullname, title = title, \
-        company = company, linkedin = linkedin, interests = json.loads(interests))
+        company = company, linkedin = linkedin, interests = my_interests)
 
 
 @app.route('/updateInterests', methods=['POST'])
@@ -128,7 +132,7 @@ def updateInterests():
 
 @app.route('/getCommonInterests', methods=['GET'])
 def getCommonInterests():
-    # print(findCommonInterests(1,3))
+    print(findCommonInterests(1,2))
     return "yay"
 
 @app.route('/resetInfo', methods=['GET'])

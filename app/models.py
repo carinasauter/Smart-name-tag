@@ -30,7 +30,7 @@ class User(UserMixin):
 	def addToDatabase(self):
 		with sql.connect('database.db') as connection:
 			cursor1 = connection.cursor()
-			cursor1.execute("INSERT INTO users (username, email, password_hash, full_name, title, company, linked_in) VALUES (?,?,?,?,?,?,?)",(self.username, self.email, self.password_hash, "", "", "", ""))
+			cursor1.execute("INSERT INTO users (username, email, password_hash, full_name, title, company, linked_in, interests) VALUES (?,?,?,?,?,?,?,?)",(self.username, self.email, self.password_hash, "", "", "", "", "[]"))
 			cursor2 = connection.cursor()
 			result = cursor2.execute("SELECT LAST_INSERT_ROWID()").fetchall()
 			result = result[0][0]

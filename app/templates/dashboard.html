@@ -4,39 +4,49 @@
 <!-- this script needs to go here because this is a nice way to use flask variables for styling. -->
 <script type="text/javascript">
 
-var my_interests = "{{interests}}";
-console.log("My interests");
+var my_interests = {{interests}};
 console.log(my_interests);
-for (entry in my_interests) {
+for (entry of my_interests) {
     console.log(entry);
 }
 $('.interest').css('cursor', 'pointer');
 // $('.interest').css('opacity', '0.6');
 
 
-// $( document ).ready(function() {
-//     var interestFields = document.getElementsByClassName("interest");
-//     console.log(interestFields);
-// });
+$( document ).ready(function() {
+    var interestFields = document.getElementsByClassName("interest");
+    for (field of interestFields) {
+        console.log(field);
+        if (my_interests.includes(parseInt(field.getAttribute('interest')))) {
+            field.style.opacity = "1";;
+        }
+        else {
+            field.style.opacity = "0.6";
+        }
+    }
+});
 
-// $( ".interest" ).click(function() {
-//     var interestName = $(this).attr("interest");
-//     if (my_interests.includes(interestName)) {
-//         $(this).css("opacity", '0.6');
-//         my_interests.pop(interestName);
-//     } else {
-//         my_interests.push(interestName);
-//         $(this).css("opacity", '1');
-//     }
-//     console.log(my_interests);
+$( ".interest" ).click(function() {
+    var interestName = $(this).attr("interest");
+    if (my_interests.includes(parseInt(interestName))) {
+        $(this).css("opacity", '0.6');
+        console.log(interestName);
+        var index = my_interests.indexOf(parseInt(interestName));
+        my_interests.splice(index, 1);
+        // my_interests.pop(parseInt(interestName));
+    } else {
+        my_interests.push(parseInt(interestName));
+        $(this).css("opacity", '1');
+    }
+    console.log(my_interests);
 
-//     $.ajax({
-//         type: "POST",
-//         data: {int: JSON.stringify(my_interests)},
-//         url: "/updateInterests",
-//         dataType: "json"
-//     });
-// });
+    $.ajax({
+        type: "POST",
+        data: {int: JSON.stringify(my_interests)},
+        url: "/updateInterests",
+        dataType: "json"
+    });
+});
 
 </script>
 {% endblock %}
@@ -54,9 +64,6 @@ $('.interest').css('cursor', 'pointer');
                         <div class="input-field">
                             {{ form.fullname(placeholder = "Full name", class ="materialize-textarea icon_prefix2") }}
 
-                            {% for item in interests %}
-                            {{item}}
-                            {% endfor %}
                         </div>
                         {% else %}
                         <div class = "row">
@@ -149,31 +156,31 @@ $('.interest').css('cursor', 'pointer');
         <br>
         <div class="row">
             <div class="col l4">
-                <img class="interest materialboxed" interest = "drinking" src="{{ url_for('static', filename='img/alcohol.bmp') }}">
+                <img class="interest materialboxed" interest = 1 src="{{ url_for('static', filename='img/alcohol.bmp') }}">
             </div>
             <div class="col l4">
-                <img class="interest materialboxed" interest = "bball" src="{{ url_for('static', filename='img/bball.bmp') }}">
+                <img class="interest materialboxed" interest = 2 src="{{ url_for('static', filename='img/bball.bmp') }}">
             </div>
             <div class="col l4">
-                <img class=" interest materialboxed" interest = "photography" src="{{ url_for('static', filename='img/Camera.bmp') }}">
+                <img class=" interest materialboxed" interest = 3 src="{{ url_for('static', filename='img/Camera.bmp') }}">
             </div>
             <div class="col l4">
-                <img class=" interest materialboxed" interest = "travel" src="{{ url_for('static', filename='img/travel.bmp') }}">
+                <img class=" interest materialboxed" interest = 4 src="{{ url_for('static', filename='img/travel.bmp') }}">
             </div>
             <div class="col l4">
-                <img class=" interest materialboxed" interest = "dog" src="{{ url_for('static', filename='img/dog.bmp') }}">
+                <img class=" interest materialboxed" interest = 5 src="{{ url_for('static', filename='img/dog.bmp') }}">
             </div>
             <div class="col l4">
-                <img class="interest materialboxed" interest = "cat" src="{{ url_for('static', filename='img/cat.bmp') }}">
+                <img class="interest materialboxed" interest = 6 src="{{ url_for('static', filename='img/cat.bmp') }}">
             </div>
             <div class="col l4">
-                <img class=" interest materialboxed" interest = "lala" src="{{ url_for('static', filename='img/lala.bmp') }}">
+                <img class=" interest materialboxed" interest = 7 src="{{ url_for('static', filename='img/lala.bmp') }}">
             </div>
             <div class="col l4">
-                <img class="interest materialboxed" interest = "warriors" src="{{ url_for('static', filename='img/warriors.bmp') }}">
+                <img class="interest materialboxed" interest = 8 src="{{ url_for('static', filename='img/warriors.bmp') }}">
             </div>
             <div class="col l4">
-                <img class="interest materialboxed" interest = "marvel" src="{{ url_for('static', filename='img/marvel.bmp') }}">
+                <img class="interest materialboxed" interest = 9 src="{{ url_for('static', filename='img/marvel.bmp') }}">
             </div>
         </div>
     </div>
