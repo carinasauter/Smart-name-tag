@@ -14,6 +14,9 @@
   </head>
   <body>
     <div class = "container">
+        <div class="header center-align">
+            <img src="{{ url_for('static', filename='img/tag.png') }}">
+        </div>
         <div id="form_shape">
             <form action="" method="POST">
             {{ form.hidden_tag() }}
@@ -45,7 +48,7 @@
                 </div>
                 <div class = "row">
                     <div class = "center-align">
-                        <button class="btn waves-effect waves-light" type="submit">Signup
+                        <button class="btn waves-effect waves-light red darken-1" type="submit">Signup
                             <i class="material-icons right">send</i>
                         </button>
                     </div>
@@ -53,7 +56,7 @@
             </form>
             <div class = "row">
                 <div class = "center-align">
-                     <p>Already have an account? <a href="{{ url_for('login') }}" title="">Login</a>  instead. </p>
+                     <p>Already have an account? <a href="{{ url_for('login') }}" class = "red-text darken-1" title="">Login</a>  instead. </p>
                 </div>
             </div>
         </div>

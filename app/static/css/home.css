@@ -26,3 +26,10 @@ h3 {
 #logoutbutton {
 	margin-top: 60px;
 }
+
+.header img {
+	width: 250px;
+	margin-top: 80px;
+	margin-bottom: 30px;
+
+}
