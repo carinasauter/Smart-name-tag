@@ -1,6 +1,6 @@
 from flask import render_template, redirect, request, url_for, flash
 from app import app, models, db, login_manager, mqtt
-from .forms import LoginForm, SignUpForm
+from .forms import LoginForm, SignUpForm, InfoForm
 from .models import *
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User
@@ -86,30 +86,74 @@ def unauthorized_handler():
 
 
 
-@app.route('/profile')
+@app.route('/profile', methods = ['GET', 'POST'])
+@login_required
 def profile():
+    form = InfoForm()
+    fullname = current_user.fullname
+    title = current_user.title
+    company = current_user.company
+    linkedin = current_user.linkedin
+    interests = current_user.getInterests()
+    if form.validate_on_submit():
+        new_fullname = form.fullname.data
+        new_title = form.title.data
+        new_company = form.company.data
+        new_linkedin = form.linkedIn.data
+        if new_fullname != "":
+            current_user.updateInfoFullname(new_fullname)
+            fullname = new_fullname
+        if new_title != "":
+            current_user.updateInfoTitle(new_title)
+            title = new_title
+        if new_company != "":
+            current_user.updateInfoCompany(new_company)
+            company = new_company
+        if new_linkedin != "":
+            current_user.updateInfolinkedin(new_linkedin)
+            linkedin = new_linkedin
+        return render_template('dashboard.html', form = form, fullname = fullname, title = title, \
+            company = company, linkedin = linkedin, interests = json.loads(interests))
     mqtt.subscribe("caycay/feeds/meetuser")
-    return render_template('dashboard.html')
+    return render_template('dashboard.html', form = form, fullname = fullname, title = title, \
+        company = company, linkedin = linkedin, interests = json.loads(interests))
 
 
 @app.route('/updateInterests', methods=['POST'])
 def updateInterests():
     interests = request.form['int']
-    print(interests)
+    # print(interests)
     current_user.updateUserInterests(interests)
     return "great"
 
 @app.route('/getCommonInterests', methods=['GET'])
 def getCommonInterests():
-    print(findCommonInterests(1,3))
+    # print(findCommonInterests(1,3))
     return "yay"
 
+@app.route('/resetInfo', methods=['GET'])
+def resetInfo():
+    current_user.updateInfolinkedin("")
+    current_user.updateInfoCompany("")
+    current_user.updateInfoTitle("")
+    current_user.updateInfoFullname("")
+    form = InfoForm()
+    interests = current_user.getInterests()
+    return render_template('dashboard.html', form = form, fullname = "", title = "", \
+            company = '', linkedin = "", interests = interests)
 
 
 @app.route('/contacts', methods=['GET'])
 @login_required
 def showContacts():
-    contacts = []
-    return render_template("contacts.html", contacts = contacts)
+    # addContact(1,2)
+    # addContact(2,1)
+    # addContact(1,3)
+    contacts = current_user.getContacts()
+    uniqueContacts = []
+    for contact in contacts:
+        if contact not in uniqueContacts:
+            uniqueContacts.append(contact)
+    return render_template("contacts.html", contacts = uniqueContacts)
 
 

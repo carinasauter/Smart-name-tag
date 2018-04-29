@@ -5,7 +5,7 @@ CREATE TABLE users (
     username text not null,
     email text not null,
     password_hash text not null,
-    full_name text
+    full_name text,
     title text,
     company text,
     linked_in text,

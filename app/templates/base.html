@@ -14,15 +14,12 @@
   <body>
     <header>
       <nav class = "top-nav">
-        <div class = "container">
+        <div>
           <div class="nav-wrapper">
             <div class = "row">
-              <div class="col s12 m10 offset-m1 l8 offset-l2">
+              <div class="col s19 m10 offset-m1 l7 offset-l3">
                 <h3 class="header">Smart Name Tag Manager</h3>
               </div>
-              <div class = "col s2 m2 l2 right-align" id = "logoutbutton">
-                <a href="{{ url_for('logout')}}"><button class = "btn">LOGOUT</button></a>
-            </div>
           </div>
         </div>
       </nav>
@@ -31,24 +28,27 @@
           <li class = "blue-grey darken-4">
             <div class = "spacer blue-grey-text darken-4 valign-wrapper">
               <img id ="profilepic" class="circle" src="{{ url_for('static', filename='img/carina.bmp') }}">
-              <span class = "grey-text lighten-1">carina.sauter@berkeley.edu</span>
+              <span class = "grey-text lighten-1">{{ current_user.username }}</span>
             </div>
           </li>
           <li class = "blue-grey darken-3">
             <li class="bold">
-              <a href="{{ url_for('profile') }}" class = "waves-effect waves-teal grey-text lighten-1"><i class="material-icons blue-grey-text darken-2" role="presentation">email</i>My Interests</a>
+              <a href="{{ url_for('profile') }}" class = "waves-effect waves-teal grey-text lighten-1"><i class="material-icons blue-grey-text darken-2" role="presentation">account_box</i>Profile</a>
             </li>  
             <li class="bold">
-              <a href="{{ url_for('contacts') }}" class="waves-effect waves-teal grey-text lighten-1"><i class="material-icons blue-grey-text darken-2">email</i>My contacts</a>
+              <a href="{{ url_for('showContacts') }}" class="waves-effect waves-teal grey-text lighten-1"><i class="material-icons blue-grey-text darken-2">people</i>Contacts</a>
+            </li>
+            <li class="bold">
+              <a href="{{ url_for('logout') }}" class="waves-effect waves-teal grey-text lighten-1"><i class="material-icons blue-grey-text darken-2">highlight_off</i>Logout</a>
             </li>
           </li>
         </ul>
       </div>
     </header>
     <main>
-      <div id="content" class = "container">
+      <div id="content">
         <div class = "row">
-          <div class = "col s12 m8 l7 offset-m1 offset-l3">
+          <div class = "col s12 m8 l9 offset-m1 offset-l3">
             <div>
               {% block content %}{% endblock %}
             </div>

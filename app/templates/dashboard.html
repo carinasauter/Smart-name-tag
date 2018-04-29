@@ -1,34 +1,181 @@
 {% extends "base.html" %}
+
+{% block variables %}
+<!-- this script needs to go here because this is a nice way to use flask variables for styling. -->
+<script type="text/javascript">
+
+var my_interests = "{{interests}}";
+console.log("My interests");
+console.log(my_interests);
+for (entry in my_interests) {
+    console.log(entry);
+}
+$('.interest').css('cursor', 'pointer');
+// $('.interest').css('opacity', '0.6');
+
+
+// $( document ).ready(function() {
+//     var interestFields = document.getElementsByClassName("interest");
+//     console.log(interestFields);
+// });
+
+// $( ".interest" ).click(function() {
+//     var interestName = $(this).attr("interest");
+//     if (my_interests.includes(interestName)) {
+//         $(this).css("opacity", '0.6');
+//         my_interests.pop(interestName);
+//     } else {
+//         my_interests.push(interestName);
+//         $(this).css("opacity", '1');
+//     }
+//     console.log(my_interests);
+
+//     $.ajax({
+//         type: "POST",
+//         data: {int: JSON.stringify(my_interests)},
+//         url: "/updateInterests",
+//         dataType: "json"
+//     });
+// });
+
+</script>
+{% endblock %}
+
 {% block content %}
 
-<h3">Please select your interests</h3>
-<div class="row">
-    <div class="col l4">
-        <img class="interest materialboxed" interest = "drinking" src="{{ url_for('static', filename='img/alcohol.bmp') }}">
+<div class = "row">
+    <div class = "col s12 m12 l5">
+        <h6>Your Information</h6>
+        <form action="" method="POST">
+                {{ form.hidden_tag() }}
+                <div class="row">
+                    <div id= "fullname" class = "col l11">
+                        {% if fullname == "" %}
+                        <div class="input-field">
+                            {{ form.fullname(placeholder = "Full name", class ="materialize-textarea icon_prefix2") }}
+
+                            {% for item in interests %}
+                            {{item}}
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        <div class = "row">
+                            <br>
+                            <div class = "col l5">
+                               <b> Full Name:</b>
+                            </div>
+                            <div class = "col l7">
+                                {{ fullname }}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class = "col l11">
+                        {% if company == "" %}
+                        <div class="input-field">
+                            {{ form.company(placeholder = "Company", class ="materialize-textarea icon_prefix2") }}
+                        </div>
+                        {% else %}
+                        <div class = "row">
+                            <br>
+                            <div class = "col l5">
+                               <b> Company:</b>
+                            </div>
+                            <div class = "col l7">
+                                {{ company }}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class = "col l11">
+                         {% if title == "" %}
+                        <div class="input-field">
+                            {{ form.title(placeholder = "Title", class ="materialize-textarea icon_prefix2") }}
+                        </div>
+                        {% else %}
+                        <div class = "row">
+                            <br>
+                            <div class = "col l5">
+                               <b> Role:</b>
+                            </div>
+                            <div class = "col l7">
+                                {{ title }}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class = "col l11">
+                         {% if linkedin == "" %}
+                        <div class="input-field">
+                            {{ form.linkedIn(placeholder = "LinkedIn Profile", class ="materialize-textarea icon_prefix2") }}
+                        </div>
+                        {% else %}
+                        <div class = "row">
+                            <br>
+                            <div class = "col l4">
+                               <b> LinkedIn:</b>
+                            </div>
+                            <div class = "col l8">
+                                {{ linkedin }}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                <br>
+                <div class = "row">
+                    <div class = "center-align">
+                        {% if linkedin == "" or title == "" or company == "" or fullname == "" %}
+                        <button class="btn waves-effect waves-light" type="submit">SAVE
+                            <i class="material-icons right">save</i>
+                        </button>
+                        {% endif %}
+                        <button class="btn waves-effect waves-light reset">RESET
+                            <i class="material-icons right">delete</i>
+                        </button>
+                    </div>
+                </div>
+            </form>
     </div>
-    <div class="col l4">
-        <img class="interest materialboxed" interest = "bball" src="{{ url_for('static', filename='img/bball.bmp') }}">
-    </div>
-    <div class="col l4">
-        <img class=" interest materialboxed" interest = "photography" src="{{ url_for('static', filename='img/Camera.bmp') }}">
-    </div>
-    <div class="col l4">
-        <img class=" interest materialboxed" interest = "travel" src="{{ url_for('static', filename='img/travel.bmp') }}">
-    </div>
-    <div class="col l4">
-        <img class=" interest materialboxed" interest = "dog" src="{{ url_for('static', filename='img/dog.bmp') }}">
-    </div>
-    <div class="col l4">
-        <img class="interest materialboxed" interest = "cat" src="{{ url_for('static', filename='img/cat.bmp') }}">
-    </div>
-    <div class="col l4">
-        <img class=" interest materialboxed" interest = "lala" src="{{ url_for('static', filename='img/lala.bmp') }}">
-    </div>
-    <div class="col l4">
-        <img class="interest materialboxed" interest = "warriors" src="{{ url_for('static', filename='img/warriors.bmp') }}">
-    </div>
-    <div class="col l4">
-        <img class="interest materialboxed" interest = "marvel" src="{{ url_for('static', filename='img/marvel.bmp') }}">
+    <div class = "col s12 m12 l6">
+        <h6>Your Interests</h6>
+        <br>
+        <div class="row">
+            <div class="col l4">
+                <img class="interest materialboxed" interest = "drinking" src="{{ url_for('static', filename='img/alcohol.bmp') }}">
+            </div>
+            <div class="col l4">
+                <img class="interest materialboxed" interest = "bball" src="{{ url_for('static', filename='img/bball.bmp') }}">
+            </div>
+            <div class="col l4">
+                <img class=" interest materialboxed" interest = "photography" src="{{ url_for('static', filename='img/Camera.bmp') }}">
+            </div>
+            <div class="col l4">
+                <img class=" interest materialboxed" interest = "travel" src="{{ url_for('static', filename='img/travel.bmp') }}">
+            </div>
+            <div class="col l4">
+                <img class=" interest materialboxed" interest = "dog" src="{{ url_for('static', filename='img/dog.bmp') }}">
+            </div>
+            <div class="col l4">
+                <img class="interest materialboxed" interest = "cat" src="{{ url_for('static', filename='img/cat.bmp') }}">
+            </div>
+            <div class="col l4">
+                <img class=" interest materialboxed" interest = "lala" src="{{ url_for('static', filename='img/lala.bmp') }}">
+            </div>
+            <div class="col l4">
+                <img class="interest materialboxed" interest = "warriors" src="{{ url_for('static', filename='img/warriors.bmp') }}">
+            </div>
+            <div class="col l4">
+                <img class="interest materialboxed" interest = "marvel" src="{{ url_for('static', filename='img/marvel.bmp') }}">
+            </div>
+        </div>
     </div>
 </div>
 
