@@ -25,9 +25,3 @@ class InfoForm(Form):
 	company = StringField("Company")
 	linkedIn = StringField("LinkedInProfile")
 	
-
-
-# next step: create user interface to supply additional profile information
-# connect to database
-# read from database to dynamically set the page
-# after form submission, the page should be updated automatically
