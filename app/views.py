@@ -153,9 +153,12 @@ def showContacts():
     # addContact(1,2)
     # addContact(2,1)
     # addContact(1,3)
+    # addContact(3,1)
     contacts = current_user.getContacts()
+    print(contacts)
     uniqueContacts = []
     for contact in contacts:
+        print(contact)
         if contact not in uniqueContacts:
             uniqueContacts.append(contact)
     return render_template("contacts.html", contacts = uniqueContacts)
