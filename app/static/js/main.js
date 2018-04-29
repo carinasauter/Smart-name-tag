@@ -14,5 +14,5 @@ $(document).ready(function(){
   });
 
 
-var instance = M.Sidenav.getInstance(elem);
-console.log(instance);
+// var instance = M.Sidenav.getInstance(elem);
+// console.log(instance);
