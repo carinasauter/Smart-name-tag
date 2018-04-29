@@ -128,6 +128,13 @@ def intersection(lst1, lst2):
 	return lst3
 
 
+def getNumUsers():
+	with sql.connect('database.db') as connection:
+		cursor = connection.cursor()
+		result = cursor.execute("SELECT COUNT (*) FROM users;").fetchall()
+	return result[0][0]
+
+
 
 
 
