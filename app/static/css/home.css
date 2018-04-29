@@ -33,3 +33,13 @@ h3 {
 	margin-bottom: 30px;
 
 }
+
+.txt {
+	width: 300px;
+}
+
+/*@media screen and (max-width: 600px) {
+	.header img {
+		width: 100px;
+	}
+}*/

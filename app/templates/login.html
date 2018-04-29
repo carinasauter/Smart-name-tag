@@ -16,11 +16,11 @@
         <div class="header center-align">
             <img src="{{ url_for('static', filename='img/tag.png') }}">
         </div>
-        <div id="form_shape">
+        <div id="form_shape ">
             <form action="" method="POST">
                 {{ form.hidden_tag() }}
                 <div class="row">
-                    <div class="col l6 offset-l3">
+                    <div class = "col center-align s12 l6">
                         <div class="input-field">
                             <i class="material-icons prefix">account_circle</i>
                             {{ form.username(placeholder = "Username", class ="materialize-textarea icon_prefix2") }}
@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="row">
-                    <div class = "col l6 offset-l3">
+                    <div class = "col s12 l6 center-align offset-l3">
                         <div class="input-field">
                             <i class="material-icons prefix">lock</i>
                             {{ form.password(placeholder = "Password", class ="materialize-textarea icon_prefix2") }}
