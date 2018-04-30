@@ -165,6 +165,7 @@ def showContacts():
         print(contact)
         if contact not in uniqueContacts:
             uniqueContacts.append(contact)
+    print(uniqueContacts)
     return render_template("contacts.html", contacts = uniqueContacts)
 
 
