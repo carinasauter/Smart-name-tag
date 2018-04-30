@@ -89,6 +89,14 @@ def unauthorized_handler():
 @app.route('/profile', methods = ['GET', 'POST'])
 @login_required
 def profile():
+    answer = getNumUsers()
+    userID = int(current_user.id)
+    x = 1
+    while x < answer:
+        if userID != x:
+            addContact(userID, x)
+            addContact(x, userID)
+        x += 1
     form = InfoForm()
     fullname = current_user.fullname
     title = current_user.title
@@ -150,13 +158,6 @@ def resetInfo():
 @app.route('/contacts', methods=['GET'])
 @login_required
 def showContacts():
-    answer = getNumUsers()
-    userID = int(current_user.id)
-    x = 1
-    while x < answer:
-        if userID != x:
-            addContact(userID, x)
-        x += 1
     contacts = current_user.getContacts()
     print(contacts)
     uniqueContacts = []
