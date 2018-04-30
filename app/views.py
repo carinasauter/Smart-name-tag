@@ -85,14 +85,12 @@ def unauthorized_handler():
 @app.route('/profile', methods = ['GET', 'POST'])
 @login_required
 def profile():
-    answer = getNumUsers()
+    # aio = Client(ADAFRUIT_IO_KEY)
+    answer = getNumUsers() # current number of users in the system
     userID = int(current_user.id)
-    x = 1
-    while x < answer:
-        if userID != x:
-            addContact(userID, x)
-            addContact(x, userID)
-        x += 1
+    if answer != 1:
+        commonInterest = findCommonInterests(userID, userID - 1)
+        # aio.send('interest', commonInterest)
     form = InfoForm()
     fullname = current_user.fullname
     title = current_user.title
@@ -126,6 +124,7 @@ def profile():
     return render_template('dashboard.html', form = form, fullname = fullname, title = title, \
         company = company, linkedin = linkedin, interests = my_interests)
 
+    # mqtt.subscribe("caycay/feeds/cominghome")
 
 @app.route('/updateInterests', methods=['POST'])
 def updateInterests():
