@@ -85,7 +85,7 @@ def unauthorized_handler():
 @app.route('/profile', methods = ['GET', 'POST'])
 @login_required
 def profile():
-    # aio = Client(ADAFRUIT_IO_KEY)
+    aio = Client(ADAFRUIT_IO_KEY)
     answer = getNumUsers() # current number of users in the system
     userID = int(current_user.id)
     if answer != 1:
