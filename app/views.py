@@ -15,10 +15,6 @@ from Adafruit_IO import *
 import time
 
 
-# UPLOAD_FOLDER = '/path/to/the/uploads'
-# ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
-# photos = UploadSet('photos', IMAGES)
-
 ADAFRUIT_IO_KEY = '80009f64496041f79d5f440181eeb727'
 ADAFRUIT_IO_USERNAME = 'caycay'
 

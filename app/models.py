@@ -188,7 +188,10 @@ def getUserByID(query):
 """
 @mqtt.on_message()
 def handle_mqtt_message(client, userdata, message):
-	print("hello")
+	print("made a connection")
+	addContact(7,8)
+	addContact(8,7)
+
 
 		
 @login_manager.user_loader
